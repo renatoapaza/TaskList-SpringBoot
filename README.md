@@ -12,7 +12,7 @@ Este proyecto es una API REST para la gestión de tareas que permite realizar op
 - **Spring Boot**: 3.5.4
 - **Gestor de dependencias**: Maven
 - **Packaging**: JAR
-- **Base de datos**: MySQL / H2 Database (para desarrollo)
+- **Base de datos**: PostgreSQL / H2 Database (para desarrollo)
 
 ## 📦 Dependencias
 
@@ -21,7 +21,7 @@ Este proyecto es una API REST para la gestión de tareas que permite realizar op
 - **Spring Boot Dev Tools**: Herramientas de desarrollo
 - **Spring Data JPA**: Persistencia de datos
 - **H2 Database**: Base de datos en memoria para desarrollo
-- **MySQL Driver**: Conector para MySQL
+- **PostgreSQL Driver**: Conector para PostgreSQL
 
 ## 🏗️ Arquitectura
 
@@ -33,13 +33,13 @@ Este proyecto es una API REST para la gestión de tareas que permite realizar op
 
 ## 🗄️ Base de Datos
 
-El proyecto utiliza MySQL como base de datos principal. 
+El proyecto utiliza PostgreSQL como base de datos principal.
 
-**⚠️ Importante**: La base de datos MySQL debe llamarse **`task_list`** para que la conexión funcione correctamente.
+**⚠️ Importante**: La base de datos PostgreSQL debe llamarse **`task_list`** para que la conexión funcione correctamente.
 
 ### Configuración de la Base de Datos
 
-1. Crear la base de datos en MySQL:
+1. Crear la base de datos en PostgreSQL:
 ```sql
 CREATE DATABASE task_list;
 
@@ -51,7 +51,7 @@ CREATE DATABASE task_list;
 
 - Java 24 o superior
 - Maven 3.6+
-- MySQL Server
+- PostgreSQL Server
 - IDE de tu preferencia (IntelliJ IDEA, Eclipse, VS Code)
 
 ### Pasos para ejecutar
@@ -63,7 +63,7 @@ cd TaskList_SpringBoot
 ```
 
 2. **Configurar la base de datos**
-   - Asegúrate de tener MySQL ejecutándose
+   - Asegúrate de tener PostgreSQL ejecutándose
    - Crear la base de datos `task_list`
    - Verificar las credenciales en `application.properties`
 
@@ -102,10 +102,14 @@ src/
 La configuración principal se encuentra en `src/main/resources/application.properties`:
 
 ```properties
-# Ejemplo de configuración para MySQL
-spring.datasource.url=jdbc:mysql://localhost:3306/task_list
-spring.datasource.username=root
+# Ejemplo de configuración para PostgreSQL
+spring.datasource.url=jdbc:postgresql://localhost:5432/task_list
+spring.datasource.username=postgres
 spring.datasource.password=tu_password
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA/Hibernate
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 
 # JPA/Hibernate
 spring.jpa.hibernate.ddl-auto=update
